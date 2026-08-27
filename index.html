@@ -577,7 +577,7 @@ async function playVoiceNote(){
   voiceBtn.disabled=true;
   voiceBtn.classList.add('on');
   voiceBtn.textContent='…';
-  voiceState.textContent='La canción se está callando...';
+  voiceState.textContent='Callando canción...';
   const resumeVol=userVol;
   const wasPlaying=!audio.paused && !audio.ended;
   document.body.classList.remove('is-playing');
@@ -587,11 +587,11 @@ async function playVoiceNote(){
   }
   voice.currentTime=0;
   voice.volume=1;
-  voiceState.textContent='Escúchame...';
+  voiceState.textContent='❣️❣️❣️';
   voiceBtn.textContent='❚❚';
   try{ await voice.play(); }
   catch(err){
-    voiceState.textContent='Toca de nuevo para oír el audio';
+    voiceState.textContent='Si tocas otra vez puedes oirlo de nuevo';
     voiceBusy=false; voiceBtn.disabled=false; voiceBtn.classList.remove('on'); voiceBtn.textContent='▶';
     if(wasPlaying){
       try{ await audio.play(); }catch(e){}
@@ -603,7 +603,7 @@ async function playVoiceNote(){
 }
 
 async function resumeSongAfterVoice(){
-  voiceState.textContent='La canción vuelve...';
+  voiceState.textContent='y ahora la canción vuelve...';
   const resumeVol=userVol;
   if(audio.getAttribute('src')){
     try{ await audio.play(); }catch(e){}
@@ -614,7 +614,7 @@ async function resumeSongAfterVoice(){
   voiceBtn.disabled=false;
   voiceBtn.classList.remove('on');
   voiceBtn.textContent='▶';
-  voiceState.textContent='Si quieres, puedes oírlo otra vez';
+  voiceState.textContent='Si tocas otra vez puedes oirlo de nuevo';
 }
 voice.addEventListener('ended',resumeSongAfterVoice);
 voiceBtn.addEventListener('click',playVoiceNote);
